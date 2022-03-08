@@ -18,6 +18,7 @@ dependencies {
 	implementation 'org.projectlombok:lombok'
 	runtimeOnly 'org.postgresql:postgresql'
 	testImplementation 'org.springframework.boot:spring-boot-starter-test'
+	implementation 'org.springframework.boot:spring-boot-starter-hateoas'
 }
 
 tasks.named('test') {
