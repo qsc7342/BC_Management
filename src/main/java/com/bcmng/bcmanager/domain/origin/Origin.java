@@ -17,7 +17,7 @@ public class Origin {
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "menu_id")
-    private List<Menu> menu;  // 메뉴
+    private Menu menu;  // 메뉴
 
     private String material; // 재료
 
