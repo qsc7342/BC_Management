@@ -3,6 +3,7 @@ package com.bcmng.bcmanager.domain.menu;
 import com.bcmng.bcmanager.domain.book.Book;
 import com.bcmng.bcmanager.domain.image.MenuImage;
 import com.bcmng.bcmanager.domain.origin.Origin;
+import com.bcmng.bcmanager.domain.review.Review;
 import lombok.Getter;
 
 import javax.persistence.*;
@@ -26,7 +27,9 @@ public class Menu {
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "book_id")
     private Book book; // 예약
-
+//
+    @OneToMany(mappedBy = "menu", cascade = CascadeType.ALL)
+    private List<Review> reviews;
     /*
     ** 원산지 리스트
     */
