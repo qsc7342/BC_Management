@@ -37,16 +37,16 @@ public class Menu {
     @OneToMany(mappedBy = "menu", cascade = CascadeType.ALL)
     private List<Origin> origins;
 
-    public static Menu createMenu(String name, Integer price) {
-        Menu menu = new Menu();
-        MenuImage menuImage = new MenuImage();
-        menu.setName(name);
-        menu.setPrice(price);
-
-        menuImage.setFileName("테스트 이미지");
-        menuImage.setFilePath("https://cdn.shopify.com/s/files/1/0251/8420/6927/products/d721ac9b7f8a29acc5d0f20553c331d1_200x200.png?v=1573827808");
-        menu.setImage(menuImage);
-        menuImage.setMenu(menu);
-        return menu;
-    }
+//    public static Menu createMenu(String name, Integer price) {
+//        Menu menu = new Menu();
+//        MenuImage menuImage = new MenuImage();
+//        menu.setName(name);
+//        menu.setPrice(price);
+//
+//        menuImage.setFileName("테스트 이미지");
+//        menuImage.setFilePath("https://cdn.shopify.com/s/files/1/0251/8420/6927/products/d721ac9b7f8a29acc5d0f20553c331d1_200x200.png?v=1573827808");
+//        menu.setImage(menuImage);
+//        menuImage.setMenu(menu);
+//        return menu;
+//    }
 }
