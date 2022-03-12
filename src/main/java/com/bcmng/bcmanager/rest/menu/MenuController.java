@@ -22,13 +22,7 @@ public class MenuController {
     private final MenuRepository menuRepository;
 
     @GetMapping(produces = MediaType.APPLICATION_JSON_VALUE)
-    public ResponseEntity<?> getMenus(@PageableDefault Pageable pageable) {
-        Page<Menu> menus = menuRepository.findAll(pageable);
-        PagedModel.PageMetadata pageMetadata = new PagedModel.PageMetadata(pageable.getPageSize(),
-                                                                           menus.getNumber(),
-                                                                           menus.getTotalElements());
-        PagedModel<Menu> model = PagedModel.of(menus.getContent(), pageMetadata);
-
-        return ResponseEntity.ok(model);
+    public ResponseEntity<?> getMenus() {
+        return ResponseEntity.ok(menuRepository.findAll());
     }
 }
