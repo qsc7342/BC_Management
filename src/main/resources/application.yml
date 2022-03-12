@@ -1,0 +1,14 @@
+environments:
+  dev:
+    url: localhost
+    name: Developer Setup
+  prod:
+    url: http://bcmgmt.duckdns.org
+    name: The Banchan
+
+spring:
+  datasource:
+    driver-class-name: org.postgresql.Driver
+    url: jdbc:postgresql://119.69.70.88:5432/themom
+    username: bcm
+    password: bcm2022!
