@@ -3,7 +3,7 @@ environments:
     url: localhost
     name: Developer Setup
   prod:
-    url: http://bcmgmt.duckdns.org
+    url: 119.69.70.88
     name: The Banchan
 
 spring:
