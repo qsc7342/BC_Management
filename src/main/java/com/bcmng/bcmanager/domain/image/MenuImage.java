@@ -1,11 +1,12 @@
 package com.bcmng.bcmanager.domain.image;
 import com.bcmng.bcmanager.domain.menu.Menu;
 import lombok.Getter;
+import lombok.Setter;
 
 import javax.persistence.*;
 
 @Entity
-@Getter
+@Getter @Setter
 public class MenuImage {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
