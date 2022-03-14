@@ -12,3 +12,7 @@ spring:
     url: jdbc:postgresql://119.69.70.88:5432/themom
     username: bcm
     password: bcm2022!
+
+  servlet:
+    multipart:
+      location: ${HOME}/tmp
