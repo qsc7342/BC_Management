@@ -42,7 +42,7 @@ public class FileIOService {
                 e.printStackTrace();
             }
         }
-        
+
         MenuImage mi = new MenuImage();
         mi.setFname(file.getOriginalFilename());
 
