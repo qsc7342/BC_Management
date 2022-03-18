@@ -10,12 +10,9 @@ import javax.persistence.*;
 public class MenuImage {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @JoinColumn(name = "menu_id")
     @Column(name = "menuimage_id")
     private Long id;
-
-    @OneToOne(mappedBy = "image", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
-    @JoinColumn(name = "menu_id")
-    private Menu menu;
 
     private String fname;
 }
