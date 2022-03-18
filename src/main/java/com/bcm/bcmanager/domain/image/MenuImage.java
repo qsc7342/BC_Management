@@ -14,6 +14,7 @@ public class MenuImage {
     private Long id;
 
     @OneToOne(mappedBy = "image", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    @JoinColumn(name = "menu_id")
     private Menu menu;
 
     private String fname;
