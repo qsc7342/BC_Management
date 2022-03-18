@@ -4,6 +4,7 @@ import com.bcm.bcmanager.domain.book.Book;
 import com.bcm.bcmanager.domain.image.MenuImage;
 import com.bcm.bcmanager.domain.origin.Origin;
 import com.bcm.bcmanager.domain.review.Review;
+import com.fasterxml.jackson.annotation.JsonInclude;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -12,7 +13,9 @@ import java.util.List;
 
 @Entity
 @Getter @Setter
+@JsonInclude(JsonInclude.Include.NON_EMPTY)
 public class Menu {
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "menu_id")
