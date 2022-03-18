@@ -21,6 +21,7 @@ import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
+import java.util.UUID;
 
 @RequiredArgsConstructor
 @Service
@@ -44,11 +45,14 @@ public class FileIOService {
         }
 
         MenuImage mi = new MenuImage();
-        mi.setFname(file.getOriginalFilename());
+
+        String fnm = UUID.randomUUID().toString();
+
+        mi.setFname(fnm + "_" + file.getOriginalFilename());
 
         mirepo.save(mi);
 
-        File sfile = new File(filepath + "/" + mi.getId() + "_" + mi.getFname());
+        File sfile = new File(filepath + "/" + mi.getFname());
 
         try {
             file.transferTo(sfile);
@@ -60,8 +64,8 @@ public class FileIOService {
         return mi.getId();
     }
 
-    public ResponseEntity<?> downloadFile(Long id, String filename) throws IOException {
-        Path path = Paths.get(filepath + "/" + id + "_" + filename);
+    public ResponseEntity<?> downloadFile(String filename) throws IOException {
+        Path path = Paths.get(filepath + "/" + filename);
         String contentType = Files.probeContentType(path);
         HttpHeaders headers = new HttpHeaders();
         headers.setContentDisposition(ContentDisposition.builder("attachment")

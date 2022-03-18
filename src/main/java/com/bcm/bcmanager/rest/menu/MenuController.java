@@ -2,14 +2,13 @@ package com.bcm.bcmanager.rest.menu;
 
 import com.bcm.bcmanager.domain.menu.Menu;
 import com.bcm.bcmanager.repository.menu.MenuRepository;
+import com.fasterxml.jackson.annotation.JsonInclude;
 import lombok.RequiredArgsConstructor;
 
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -28,5 +27,12 @@ public class MenuController {
             ml = new ArrayList();
         }
         return new ResponseEntity<>(ml, HttpStatus.OK);
+    }
+
+    @PostMapping(value = "/save", produces = MediaType.APPLICATION_JSON_VALUE, consumes = MediaType.APPLICATION_JSON_VALUE)
+    public ResponseEntity<?> saveMenus(@RequestBody Menu m) {
+        menuRepository.save(m);
+
+        return new ResponseEntity<>(HttpStatus.OK);
     }
 }

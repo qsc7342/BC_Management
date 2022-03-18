@@ -12,7 +12,7 @@ import org.springframework.web.multipart.MultipartFile;
 @Slf4j
 @RestController
 @RequestMapping(path = "/rest/file")
-public class FileIO {
+public class FileIOController {
 
     @Autowired
     FileIOService service;
@@ -27,7 +27,7 @@ public class FileIO {
     @PostMapping(path = "/download")
     public ResponseEntity<?> downloadFile(@RequestBody MenuImage mi) {
         try {
-            return service.downloadFile(mi.getId(), mi.getFname());
+            return service.downloadFile(mi.getFname());
         } catch (Exception e) {
             return ResponseEntity.internalServerError().build();
         }
