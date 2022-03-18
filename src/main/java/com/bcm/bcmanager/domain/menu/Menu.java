@@ -4,6 +4,7 @@ import com.bcm.bcmanager.domain.book.Book;
 import com.bcm.bcmanager.domain.image.MenuImage;
 import com.bcm.bcmanager.domain.origin.Origin;
 import com.bcm.bcmanager.domain.review.Review;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import lombok.Getter;
 import lombok.Setter;
@@ -30,6 +31,7 @@ public class Menu {
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "book_id")
+    @JsonIgnore
     private Book book; // 예약
 
     @OneToMany(mappedBy = "menu", cascade = CascadeType.ALL)
