@@ -10,7 +10,6 @@ import javax.persistence.*;
 public class MenuImage {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @JoinColumn(name = "menu_id")
     @Column(name = "menuimage_id")
     private Long id;
 

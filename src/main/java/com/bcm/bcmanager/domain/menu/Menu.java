@@ -28,7 +28,7 @@ public class Menu {
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "book_id")
     private Book book; // 예약
-//
+
     @OneToMany(mappedBy = "menu", cascade = CascadeType.ALL)
     private List<Review> reviews;
     /*
