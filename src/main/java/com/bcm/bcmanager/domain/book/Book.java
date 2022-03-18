@@ -2,15 +2,19 @@ package com.bcm.bcmanager.domain.book;
 
 import com.bcm.bcmanager.domain.menu.Menu;
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonInclude;
 import lombok.Getter;
+import lombok.Setter;
 
 import javax.persistence.*;
 import java.util.ArrayList;
 import java.util.List;
 
 @Entity
-@Getter
+@Getter @Setter
+@JsonInclude(JsonInclude.Include.NON_EMPTY)
 public class Book {
+
     @Id
     @GeneratedValue
     @Column(name="book_id")
@@ -32,4 +36,5 @@ public class Book {
     private String isCancel; // 취소 여부
     private String isConfirm; // 확인 여부
     private String isComplete; // 처리 여부
+
 }

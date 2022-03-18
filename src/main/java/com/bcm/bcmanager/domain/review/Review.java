@@ -2,12 +2,14 @@ package com.bcm.bcmanager.domain.review;
 
 import com.bcm.bcmanager.domain.menu.Menu;
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonInclude;
 import lombok.Getter;
 
 import javax.persistence.*;
 
 @Entity
 @Getter
+@JsonInclude(JsonInclude.Include.NON_EMPTY)
 public class Review {
 
     @Id
