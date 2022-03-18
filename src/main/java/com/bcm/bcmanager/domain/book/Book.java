@@ -1,6 +1,7 @@
 package com.bcm.bcmanager.domain.book;
 
 import com.bcm.bcmanager.domain.menu.Menu;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.Getter;
 
 import javax.persistence.*;
@@ -24,6 +25,7 @@ public class Book {
     ** 1:N 매핑, JoinColumn (book_id)
     */
     @OneToMany(mappedBy = "book", cascade = CascadeType.ALL)
+    @JsonIgnore
     private List<Menu> menus = new ArrayList<>();
 
     private Integer totalPrice; // 총 가격

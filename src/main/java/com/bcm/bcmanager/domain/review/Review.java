@@ -1,6 +1,7 @@
 package com.bcm.bcmanager.domain.review;
 
 import com.bcm.bcmanager.domain.menu.Menu;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.Getter;
 
 import javax.persistence.*;
@@ -16,6 +17,7 @@ public class Review {
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "menu_id")
+    @JsonIgnore
     private Menu menu; // 리뷰 메뉴 (N:1 매핑)
 
     private String content; // 리뷰 내용
