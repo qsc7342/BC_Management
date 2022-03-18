@@ -17,6 +17,7 @@ dependencies {
 	implementation 'org.springframework.boot:spring-boot-starter-web'
 	implementation 'org.springframework.boot:spring-boot-starter-hateoas'
 	implementation 'org.springframework.boot:spring-boot-devtools:2.6.4'
+	implementation 'io.springfox:springfox-boot-starter:3.0.0'
 
 	testImplementation 'org.springframework.boot:spring-boot-starter-test'
 
