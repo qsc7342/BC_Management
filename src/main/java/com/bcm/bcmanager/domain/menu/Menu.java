@@ -29,6 +29,9 @@ public class Menu {
     @Schema(description = "가격")
     private Integer price;
 
+    @Schema(description = "메뉴 설명")
+    private String desc;
+
     @OneToOne(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     @JoinColumn(name = "menuimage_id")
     private MenuImage image;
