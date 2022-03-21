@@ -1,7 +1,7 @@
 package com.bcm.bcmanager.domain.origin;
 
 import com.bcm.bcmanager.domain.country.Country;
-import com.bcm.bcmanager.domain.menu.Menu;
+import com.bcm.bcmanager.domain.menuorigin.MenuOrigin;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import lombok.Getter;
@@ -20,10 +20,9 @@ public class Origin {
     @Column(name = "origin_id")
     private Long id;
 
-    @ManyToMany(fetch = FetchType.LAZY)
-    @JoinColumn(name = "menu_id")
+    @OneToMany(mappedBy = "origin")
     @JsonIgnore
-    private List<Menu> menus;  // 메뉴
+    private List<MenuOrigin> menuOrigins;  // 메뉴
 
     private String material; // 재료
 

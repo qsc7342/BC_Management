@@ -22,7 +22,7 @@ public class MenuImage {
     private String fname;
 
     @JsonIgnore
-    @OneToOne(mappedBy = "image", cascade = CascadeType.ALL)
+    @OneToOne(mappedBy = "image")
     private Menu menu;
 
 }

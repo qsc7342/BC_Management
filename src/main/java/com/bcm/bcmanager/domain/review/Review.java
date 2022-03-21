@@ -19,7 +19,7 @@ public class Review {
     @Column(name="review_id")
     private Long id;
 
-    @ManyToOne(fetch = FetchType.LAZY)
+    @ManyToOne
     @JoinColumn(name = "menu_id")
     @JsonIgnore
     private Menu menu; // 리뷰 메뉴 (N:1 매핑)

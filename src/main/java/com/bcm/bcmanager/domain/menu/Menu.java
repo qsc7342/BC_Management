@@ -2,7 +2,7 @@ package com.bcm.bcmanager.domain.menu;
 
 import com.bcm.bcmanager.domain.book.Book;
 import com.bcm.bcmanager.domain.image.MenuImage;
-import com.bcm.bcmanager.domain.origin.Origin;
+import com.bcm.bcmanager.domain.menuorigin.MenuOrigin;
 import com.bcm.bcmanager.domain.review.Review;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonInclude;
@@ -30,9 +30,10 @@ public class Menu {
     private Integer price;
 
     @Schema(description = "메뉴 설명")
+    @Column(name = "description")
     private String desc;
 
-    @OneToOne(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    @OneToOne
     @JoinColumn(name = "menuimage_id")
     private MenuImage image;
 
@@ -41,10 +42,10 @@ public class Menu {
     @JsonIgnore
     private Book book;
 
-    @OneToMany(mappedBy = "menu", cascade = CascadeType.ALL)
+    @OneToMany(mappedBy = "menu")
     private List<Review> reviews;
 
-    @ManyToMany(mappedBy = "menus", cascade = CascadeType.ALL)
-    private List<Origin> origins;
+    @OneToMany(mappedBy = "menu")
+    private List<MenuOrigin> menuOrigins;
 
 }

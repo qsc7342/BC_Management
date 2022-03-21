@@ -7,6 +7,10 @@ environments:
     name: The Banchan
 
 spring:
+  jpa:
+    hibernate:
+      ddl-auto: update
+
   datasource:
     driver-class-name: org.postgresql.Driver
     url: jdbc:postgresql://119.69.70.88:5432/themom
