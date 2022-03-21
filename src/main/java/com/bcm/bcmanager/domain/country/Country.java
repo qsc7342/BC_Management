@@ -1,16 +1,17 @@
 package com.bcm.bcmanager.domain.country;
 
+import com.bcm.bcmanager.util.BaseEnumCode;
+import lombok.AllArgsConstructor;
 import lombok.Getter;
 
-public enum Country {
-    KR ("한국산"),
-    CN ("중국산");
+@AllArgsConstructor
+public enum Country implements BaseEnumCode<String> {
+
+    한국산 ("KR"),
+    중국산 ("CN");
 
     @Getter
     private final String value;
 
-    Country(String value) {
-        this.value = value;
-    }
 }
 

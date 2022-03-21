@@ -27,7 +27,7 @@ public class Origin {
 
     private String material; // 재료
 
-    @Enumerated(EnumType.STRING)
+    @Convert(converter = CountryConverter.class)
     private Country country; // 원산지
 
 }
