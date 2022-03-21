@@ -3,6 +3,7 @@ package com.bcm.bcmanager.domain.review;
 import com.bcm.bcmanager.domain.menu.Menu;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonInclude;
+import io.swagger.v3.oas.annotations.media.Schema;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -23,8 +24,13 @@ public class Review {
     @JsonIgnore
     private Menu menu; // 리뷰 메뉴 (N:1 매핑)
 
-    private String content; // 리뷰 내용
-    private String credt; // 리뷰 생성 날짜
-    private String upddt; // 리뷰 생성 날짜
+    @Schema(description = "내용")
+    private String content;
+
+    @Schema(description = "작성 일")
+    private String credt;
+
+    @Schema(description = "수정 일")
+    private String upddt;
 
 }

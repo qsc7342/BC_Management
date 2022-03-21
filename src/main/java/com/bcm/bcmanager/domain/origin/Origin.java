@@ -8,6 +8,7 @@ import lombok.Getter;
 import lombok.Setter;
 
 import javax.persistence.*;
+import java.util.List;
 
 @Entity
 @Getter @Setter
@@ -19,10 +20,10 @@ public class Origin {
     @Column(name = "origin_id")
     private Long id;
 
-    @ManyToOne(fetch = FetchType.LAZY)
+    @ManyToMany(fetch = FetchType.LAZY)
     @JoinColumn(name = "menu_id")
     @JsonIgnore
-    private Menu menu;  // 메뉴
+    private List<Menu> menus;  // 메뉴
 
     private String material; // 재료
 

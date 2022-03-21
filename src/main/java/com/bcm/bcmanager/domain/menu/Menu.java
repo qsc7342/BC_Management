@@ -6,6 +6,7 @@ import com.bcm.bcmanager.domain.origin.Origin;
 import com.bcm.bcmanager.domain.review.Review;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonInclude;
+import io.swagger.v3.oas.annotations.media.Schema;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -22,36 +23,25 @@ public class Menu {
     @Column(name = "menu_id")
     private Long id;
 
-    private String name; // 메뉴명
-    private Integer price; // 메뉴 가격
+    @Schema(description = "메뉴 이름")
+    private String name;
+
+    @Schema(description = "가격")
+    private Integer price;
 
     @OneToOne(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     @JoinColumn(name = "menuimage_id")
-    private MenuImage image; // 메뉴 이미지, 1:1 매핑
+    private MenuImage image;
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "book_id")
     @JsonIgnore
-    private Book book; // 예약
+    private Book book;
 
     @OneToMany(mappedBy = "menu", cascade = CascadeType.ALL)
     private List<Review> reviews;
-    /*
-    ** 원산지 리스트
-    */
-    @OneToMany(mappedBy = "menu", cascade = CascadeType.ALL)
+
+    @ManyToMany(mappedBy = "menus", cascade = CascadeType.ALL)
     private List<Origin> origins;
 
-//    public static Menu createMenu(String name, Integer price) {
-//        Menu menu = new Menu();
-//        MenuImage menuImage = new MenuImage();
-//        menu.setName(name);
-//        menu.setPrice(price);
-//
-//        menuImage.setFileName("테스트 이미지");
-//        menuImage.setFilePath("https://cdn.shopify.com/s/files/1/0251/8420/6927/products/d721ac9b7f8a29acc5d0f20553c331d1_200x200.png?v=1573827808");
-//        menu.setImage(menuImage);
-//        menuImage.setMenu(menu);
-//        return menu;
-//    }
 }
