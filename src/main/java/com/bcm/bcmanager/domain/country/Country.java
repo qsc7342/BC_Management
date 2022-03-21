@@ -11,6 +11,8 @@ public enum Country {
     KR ("국산"),
     CN ("중국산");
 
+    // 국산 ("KR"), 중국산 ("CN");
+
     @Getter
     private final String value;
 

@@ -24,4 +24,6 @@ public class OriginService {
     public Origin saveOrigin(Origin origin) {
         return repo.save(origin);
     }
+
+    public void deleteOrigin(Origin origin) { repo.delete(origin); }
 }
