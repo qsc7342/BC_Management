@@ -2,6 +2,7 @@ package com.bcm.bcmanager.domain.origin;
 
 import com.bcm.bcmanager.domain.country.Country;
 import com.bcm.bcmanager.domain.menu.Menu;
+import com.bcm.bcmanager.util.CountryConverter;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import lombok.Getter;
