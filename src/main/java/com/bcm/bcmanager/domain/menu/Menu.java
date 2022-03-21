@@ -2,7 +2,7 @@ package com.bcm.bcmanager.domain.menu;
 
 import com.bcm.bcmanager.domain.book.Book;
 import com.bcm.bcmanager.domain.image.MenuImage;
-import com.bcm.bcmanager.domain.menuorigin.MenuOrigin;
+import com.bcm.bcmanager.domain.map.MenuOriginMap;
 import com.bcm.bcmanager.domain.review.Review;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonInclude;
@@ -46,6 +46,6 @@ public class Menu {
     private List<Review> reviews;
 
     @OneToMany(mappedBy = "menu")
-    private List<MenuOrigin> menuOrigins;
+    private List<MenuOriginMap> origins;
 
 }
