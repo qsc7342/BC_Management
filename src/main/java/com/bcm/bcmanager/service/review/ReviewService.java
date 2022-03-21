@@ -7,11 +7,7 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import java.time.LocalDateTime;
-import java.time.format.DateTimeFormatter;
-import java.util.Date;
 import java.util.List;
-import java.util.Optional;
 
 @RequiredArgsConstructor
 @Service
@@ -35,16 +31,25 @@ public class ReviewService {
     }
 
     @Transactional
-    public Review updateReview(Review review) {
-        Review newReview = repo.getById(review.getId());
+    public Review updateReview(Review review) throws Exception {
+        Review dbData = repo.getById(review.getId());
+        if (dbData.getPwd().equals(review.getPwd())) {
+            dbData.setContent(review.getContent());
+            dbData.setUpddt(DateUtil.now());
 
-        newReview.setContent(review.getContent());
-        newReview.setUpddt(DateUtil.now());
-
-        return newReview;
+            return dbData;
+        } else {
+            throw new Exception("패스워드가 일치하지 않습니다.");
+        }
     }
 
-    public void deleteReview(Long rid) {
-        repo.deleteById(rid);
+    public void deleteReview(Review review) throws Exception {
+        Review dbData = repo.getById(review.getId());
+        if (dbData.getPwd().equals(review.getPwd())) {
+            repo.deleteById(review.getId());
+        } else {
+            throw new Exception("패스워드가 일치하지 않습니다.");
+        }
+
     }
 }

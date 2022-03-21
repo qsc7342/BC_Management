@@ -19,10 +19,12 @@ public class Review {
     @Column(name="review_id")
     private Long id;
 
+    private String pwd;
+
     @ManyToOne
     @JoinColumn(name = "menu_id")
     @JsonIgnore
-    private Menu menu; // 리뷰 메뉴 (N:1 매핑)
+    private Menu menu;
 
     @Schema(description = "내용")
     private String content;

@@ -32,13 +32,23 @@ public class ReviewController {
 
     @PostMapping(value = "/update", consumes = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<?> updateReview(@RequestBody Review review) {
-        return new ResponseEntity<>(service.updateReview(review), HttpStatus.OK);
+        try {
+            return new ResponseEntity<>(service.updateReview(review), HttpStatus.OK);
+        } catch (Exception e) {
+            e.printStackTrace();
+            return new ResponseEntity<>(e.getMessage(), HttpStatus.INTERNAL_SERVER_ERROR);
+        }
     }
 
     @PostMapping(value = "/delete", consumes = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<?> deleteReview(@RequestBody Review review) {
-        service.deleteReview(review.getId());
-        return new ResponseEntity<>(HttpStatus.OK);
+        try {
+            service.deleteReview(review);
+            return new ResponseEntity<>(HttpStatus.OK);
+        } catch (Exception e) {
+            e.printStackTrace();
+            return new ResponseEntity<>(e.getMessage(), HttpStatus.INTERNAL_SERVER_ERROR);
+        }
     }
 
 }
