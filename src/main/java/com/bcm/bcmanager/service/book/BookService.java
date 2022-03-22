@@ -39,7 +39,7 @@ public class BookService {
 
         dbData.setCompleteyn("Y");
     }
-    
+
     @Transactional
     public void cancelBook(Book book) {
         Book dbData = repo.getById(book.getId());
