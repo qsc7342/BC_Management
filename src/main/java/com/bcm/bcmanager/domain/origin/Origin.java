@@ -29,6 +29,6 @@ public class Origin {
     private String material;
 
     @Convert(converter = CountryConverter.class)
-    private Country country; // 원산지
+    private Country country;
 
 }
