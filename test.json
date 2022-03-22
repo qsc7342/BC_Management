@@ -1,0 +1,66 @@
+[
+  {
+    "name": "꼬마김밥(5줄)",
+    "price": 3000,
+    "desc": "꼬마김밥",
+    "image": "/test.png"
+  },
+  {
+    "name": "메추리알장조림",
+    "price": 5000,
+    "desc": "메추리알을 넣은 장조림",
+    "image": "/test.png"
+  },
+  {
+    "name": "소고기장조림",
+    "price": 5000,
+    "desc": "소고기를 넣은 장조림",
+    "image": "/test.png"
+  },
+  {
+    "name": "연근조림",
+    "price": 5000,
+    "desc": "연근 넣은 조림",
+    "image": "/test.png"
+  },
+
+  {
+    "name": "콩자반",
+    "price": 3000,
+    "desc": "콩으로 만든 자반",
+    "image": "/test.png"
+  },
+
+  {
+    "name": "갈치조림",
+    "price": 9000,
+    "desc": "갈치를 조림",
+    "image": "/test.png"
+  },
+
+  {
+    "name": "찜닭",
+    "price": 6000,
+    "desc": "닭을 찜",
+    "image": "/test.png"
+  },
+
+  {
+    "name": "닭볶음탕",
+    "price": 10000,
+    "desc": "닭을 볶음",
+    "image": "/test.png"
+  },
+  {
+    "name": "고사리나물",
+    "price": 3000,
+    "desc": "고사리로 만든 나물",
+    "image": "/test.png"
+  },
+  {
+    "name": "도라지나물",
+    "price": 3000,
+    "desc": "도라지로 만든 나물",
+    "image": "/test.png"
+  }
+]
