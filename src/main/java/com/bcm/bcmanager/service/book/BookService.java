@@ -2,6 +2,7 @@ package com.bcm.bcmanager.service.book;
 
 import com.bcm.bcmanager.domain.book.Book;
 import com.bcm.bcmanager.repository.book.BookRepository;
+import com.bcm.bcmanager.util.DateUtil;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -23,6 +24,7 @@ public class BookService {
     }
 
     public void saveBook(Book book) {
+        book.setCredt(DateUtil.now());
         repo.save(book);
     }
 
