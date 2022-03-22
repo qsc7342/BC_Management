@@ -1,7 +1,7 @@
 package com.bcm.bcmanager.domain.review;
 
 import com.bcm.bcmanager.domain.menu.Menu;
-import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import io.swagger.v3.oas.annotations.media.Schema;
 import lombok.Getter;
@@ -23,7 +23,7 @@ public class Review {
 
     @ManyToOne
     @JoinColumn(name = "menu_id")
-    @JsonIgnore
+    @JsonBackReference
     private Menu menu;
 
     @Schema(description = "내용")
