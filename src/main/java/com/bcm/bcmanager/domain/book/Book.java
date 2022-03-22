@@ -1,6 +1,6 @@
 package com.bcm.bcmanager.domain.book;
 
-import com.bcm.bcmanager.domain.menu.Menu;
+import com.bcm.bcmanager.domain.map.MenuBookMap;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import io.swagger.v3.oas.annotations.media.Schema;
 import lombok.Getter;
@@ -30,18 +30,18 @@ public class Book {
 
     @Schema(name = "장바구니")
     @OneToMany(mappedBy = "book", cascade = CascadeType.ALL)
-    private List<Menu> cart;
+    private List<MenuBookMap> cart;
 
     @Schema(name = "총 가격")
     private Integer totprc;
 
     @Schema(name = "취소 여부 (Y/N)")
-    private String cancleyn;
+    private String cancleyn = "N";
 
     @Schema(name = "확인 여부 (Y/N)")
-    private String confirmyn;
+    private String confirmyn = "N";
 
     @Schema(name = "완료 여부 (Y/N)")
-    private String completeyn;
+    private String completeyn = "N";
 
 }

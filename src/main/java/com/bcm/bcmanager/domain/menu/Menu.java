@@ -1,7 +1,7 @@
 package com.bcm.bcmanager.domain.menu;
 
-import com.bcm.bcmanager.domain.book.Book;
 import com.bcm.bcmanager.domain.image.MenuImage;
+import com.bcm.bcmanager.domain.map.MenuBookMap;
 import com.bcm.bcmanager.domain.map.MenuOriginMap;
 import com.bcm.bcmanager.domain.review.Review;
 import com.fasterxml.jackson.annotation.JsonIgnore;
@@ -37,10 +37,9 @@ public class Menu {
     @JoinColumn(name = "menuimage_id")
     private MenuImage image;
 
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "book_id")
+    @OneToMany(mappedBy = "menu")
     @JsonIgnore
-    private Book book;
+    private List<MenuBookMap> books;
 
     @OneToMany(mappedBy = "menu")
     private List<Review> reviews;
