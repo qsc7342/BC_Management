@@ -1,13 +1,12 @@
 package com.bcm.bcmanager.domain.book;
 
 import com.bcm.bcmanager.domain.menu.Menu;
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonInclude;
+import io.swagger.v3.oas.annotations.media.Schema;
 import lombok.Getter;
 import lombok.Setter;
 
 import javax.persistence.*;
-import java.util.ArrayList;
 import java.util.List;
 
 @Entity
@@ -20,20 +19,29 @@ public class Book {
     @Column(name="book_id")
     private Long id;
 
-    private String name; // 예약명
-    private String createDate; // 예약 생성 날짜
-    private String bookDate; // 예약일
+    @Schema(name = "예약 명")
+    private String name;
 
-    /*
-    ** 예약에 들어있는 메뉴 리스트
-    ** 1:N 매핑, JoinColumn (book_id)
-    */
+    @Schema(name = "예약 생성 일")
+    private String credt;
+
+    @Schema(name = "에약 일")
+    private String bookdt; // 예약일
+
+    @Schema(name = "장바구니")
     @OneToMany(mappedBy = "book", cascade = CascadeType.ALL)
-    private List<Menu> menus = new ArrayList<>();
+    private List<Menu> cart;
 
-    private Integer totalPrice; // 총 가격
-    private String isCancel; // 취소 여부
-    private String isConfirm; // 확인 여부
-    private String isComplete; // 처리 여부
+    @Schema(name = "총 가격")
+    private Integer totprc;
+
+    @Schema(name = "취소 여부 (Y/N)")
+    private String cancleyn;
+
+    @Schema(name = "확인 여부 (Y/N)")
+    private String confirmyn;
+
+    @Schema(name = "완료 여부 (Y/N)")
+    private String completeyn;
 
 }
