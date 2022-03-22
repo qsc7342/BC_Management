@@ -2,6 +2,7 @@ package com.bcm.bcmanager.domain.origin;
 
 import com.bcm.bcmanager.domain.country.Country;
 import com.bcm.bcmanager.domain.map.MenuOriginMap;
+import com.bcm.bcmanager.util.CountryConverter;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import lombok.Getter;
@@ -27,7 +28,7 @@ public class Origin {
 
     private String material;
 
-    @Enumerated(EnumType.STRING)
-    private Country country;
+    @Convert(converter = CountryConverter.class)
+    private Country country; // 원산지
 
 }
