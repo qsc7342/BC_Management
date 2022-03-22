@@ -9,7 +9,7 @@ environments:
 spring:
   jpa:
     hibernate:
-      ddl-auto: update
+      ddl-auto: create-drop
 
   datasource:
     driver-class-name: org.postgresql.Driver

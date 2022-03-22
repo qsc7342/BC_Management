@@ -25,6 +25,7 @@ public class BookService {
 
     public void saveBook(Book book) {
         book.setCredt(DateUtil.now());
+        book.getCart().stream().forEach(e -> e.setBook(book));
         repo.save(book);
     }
 

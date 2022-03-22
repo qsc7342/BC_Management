@@ -32,9 +32,6 @@ public class Book {
     @OneToMany(mappedBy = "book", cascade = CascadeType.ALL)
     private List<MenuBookMap> cart;
 
-    @Schema(name = "총 가격")
-    private Integer totprc;
-
     @Schema(name = "취소 여부 (Y/N)")
     private String cancleyn = "N";
 
