@@ -4,21 +4,17 @@ import com.bcm.bcmanager.domain.image.MenuImage;
 import com.bcm.bcmanager.domain.menu.Menu;
 import lombok.RequiredArgsConstructor;
 import org.json.simple.JSONArray;
-import org.json.simple.parser.JSONParser;
 import org.json.simple.JSONObject;
+import org.json.simple.parser.JSONParser;
 import org.json.simple.parser.ParseException;
-import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
 import org.springframework.transaction.annotation.Transactional;
 
 import javax.annotation.PostConstruct;
-import javax.lang.model.SourceVersion;
 import javax.persistence.EntityManager;
-import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
 import java.io.Reader;
-import java.nio.file.Paths;
 
 @Component
 @RequiredArgsConstructor
@@ -36,8 +32,7 @@ public class Init {
     @RequiredArgsConstructor
     static class InitService {
         private final EntityManager em;
-        @Value("${spring.servlet.multipart.location}")
-        private String filepath;
+        private String filepath = System.getProperty("user.dir");
         public void dbInit() throws IOException, ParseException {
             Reader reader = new FileReader(filepath + "/test.json");
             JSONParser parser = new JSONParser();
