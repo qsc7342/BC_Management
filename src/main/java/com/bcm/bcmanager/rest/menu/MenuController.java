@@ -1,38 +1,35 @@
 package com.bcm.bcmanager.rest.menu;
 
 import com.bcm.bcmanager.domain.menu.Menu;
-import com.bcm.bcmanager.repository.menu.MenuRepository;
-import com.fasterxml.jackson.annotation.JsonInclude;
+import com.bcm.bcmanager.service.menu.MenuService;
 import lombok.RequiredArgsConstructor;
-
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-
-import java.util.ArrayList;
-import java.util.List;
 
 @RequiredArgsConstructor
 @RestController
 @RequestMapping("rest/menu")
 public class MenuController {
 
-    private final MenuRepository menuRepository;
+    private final MenuService service;
 
     @GetMapping(produces = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<?> getMenus() {
-        List<Menu> ml = menuRepository.findAll();
-        if (ml == null) {
-            ml = new ArrayList();
-        }
-        return new ResponseEntity<>(ml, HttpStatus.OK);
+        return new ResponseEntity<>(service.getMenuList(), HttpStatus.OK);
+    }
+
+    @PostMapping(value = "/{mid}", produces = MediaType.APPLICATION_JSON_VALUE)
+    public ResponseEntity<?> getMenu(@PathVariable String mid) {
+        return new ResponseEntity<>(service.getMenu(mid), HttpStatus.OK);
     }
 
     @PostMapping(value = "/save", produces = MediaType.APPLICATION_JSON_VALUE, consumes = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<?> saveMenus(@RequestBody Menu m) {
-        menuRepository.save(m);
+        service.saveMenu(m);
 
         return new ResponseEntity<>(HttpStatus.OK);
     }
+
 }
