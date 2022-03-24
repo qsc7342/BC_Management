@@ -7,15 +7,45 @@ environments:
     name: The Banchan
 
 spring:
+  profiles:
+    group:
+      "local": "testDB,common"
+      "dev":  "testDB,common"
+      "prod": "prodDB,common"
+
+---
+
+spring:
+  config:
+    activate:
+      on-profile: "testDB"
+
   jpa:
-    hibernate:
-      ddl-auto: create-drop
+    database-platform: org.hibernate.dialect.SQLiteDialect
+
+---
+
+spring:
+  config:
+    activate:
+      on-profile: "prodDB"
 
   datasource:
     driver-class-name: org.postgresql.Driver
     url: jdbc:postgresql://119.69.70.88:5432/themom
     username: bcm
     password: bcm2022!
+
+---
+
+spring:
+  config:
+    activate:
+      on-profile: "common"
+
+  jpa:
+    hibernate:
+      ddl-auto: create-drop
 
   servlet:
     multipart:
