@@ -20,7 +20,7 @@ public class MenuController {
         return new ResponseEntity<>(service.getMenuList(), HttpStatus.OK);
     }
 
-    @PostMapping(value = "/{mid}", produces = MediaType.APPLICATION_JSON_VALUE)
+    @GetMapping(value = "/{mid}", produces = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<?> getMenu(@PathVariable String mid) {
         return new ResponseEntity<>(service.getMenu(mid), HttpStatus.OK);
     }
