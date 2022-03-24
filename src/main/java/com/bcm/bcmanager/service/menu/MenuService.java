@@ -16,9 +16,11 @@ public class MenuService {
 
     public List<Menu> getMenuList() {
         List<Menu> ml = repo.findAll();
+
         if (ml == null) {
             ml = new ArrayList();
         }
+
         return ml;
     }
 
@@ -29,4 +31,5 @@ public class MenuService {
     public Menu getMenu(String mid) {
         return repo.getById(Long.parseLong(mid));
     }
+
 }
