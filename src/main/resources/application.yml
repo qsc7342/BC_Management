@@ -23,12 +23,20 @@ spring:
   jpa:
     database-platform: org.hibernate.dialect.SQLiteDialect
 
+  servlet:
+    multipart:
+      location: ${HOME}/tmp
+
 ---
 
 spring:
   config:
     activate:
       on-profile: "prodDB"
+
+  servlet:
+    multipart:
+      location: C:/tmp
 
   datasource:
     driver-class-name: org.postgresql.Driver
@@ -46,10 +54,6 @@ spring:
   jpa:
     hibernate:
       ddl-auto: create
-
-  servlet:
-    multipart:
-      location: ${HOME}/tmp
 
   mvc:
     pathmatch:
