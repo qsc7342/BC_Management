@@ -7,6 +7,7 @@ import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
 import org.json.simple.parser.ParseException;
+import org.springframework.context.annotation.Profile;
 import org.springframework.stereotype.Component;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -16,6 +17,7 @@ import java.io.FileReader;
 import java.io.IOException;
 import java.io.Reader;
 
+@Profile(value = "testDB")
 @Component
 @RequiredArgsConstructor
 public class Init {
