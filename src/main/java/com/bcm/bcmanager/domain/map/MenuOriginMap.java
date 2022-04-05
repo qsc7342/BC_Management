@@ -4,8 +4,11 @@ import com.bcm.bcmanager.domain.menu.Menu;
 import com.bcm.bcmanager.domain.origin.Origin;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonUnwrapped;
+import org.hibernate.annotations.CreationTimestamp;
+import org.hibernate.annotations.UpdateTimestamp;
 
 import javax.persistence.*;
+import java.time.LocalDateTime;
 
 @Entity
 public class MenuOriginMap {
@@ -25,4 +28,11 @@ public class MenuOriginMap {
     @JsonIgnore
     private Menu menu;
 
+    @Column(name = "created_at")
+    @CreationTimestamp
+    private LocalDateTime createdAt = LocalDateTime.now();
+
+    @Column(name = "updated_at")
+    @UpdateTimestamp
+    private LocalDateTime updatedAt = LocalDateTime.now();
 }
