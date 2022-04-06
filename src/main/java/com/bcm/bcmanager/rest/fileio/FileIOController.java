@@ -1,6 +1,5 @@
 package com.bcm.bcmanager.rest.fileio;
 
-import com.bcm.bcmanager.domain.image.MenuImage;
 import com.bcm.bcmanager.service.fileio.FileIOService;
 import io.swagger.v3.oas.annotations.Operation;
 import lombok.RequiredArgsConstructor;
@@ -9,10 +8,7 @@ import org.apache.tomcat.util.http.fileupload.IOUtils;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
 import javax.servlet.http.HttpServletResponse;
@@ -42,14 +38,13 @@ public class FileIOController {
     }
 
     @Operation(summary = "파일 다운로드")
-    @PostMapping(path = "/download")
-    public void downloadFile(@RequestBody MenuImage mi, HttpServletResponse response) throws IOException {
+    @GetMapping(path = "/download/{filename}")
+    public void downloadFile(@PathVariable String filename, HttpServletResponse response) throws IOException {
 //        try {
 //            return service.downloadFile(mi.getFname());
 //        } catch (Exception e) {
 //            return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
 //        }
-        String filename = mi.getFname();
         Path path = Paths.get(filepath + "/" + filename);
         InputStream in = Files.newInputStream(path);
         response.setContentType(Files.probeContentType(Paths.get(filepath + "/" + filename)));
