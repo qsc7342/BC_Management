@@ -1,6 +1,6 @@
-package com.bcm.bcmanager.domain.origin;
+package com.bcm.bcmanager.domain.category;
 
-import com.bcm.bcmanager.domain.map.MenuOriginMap;
+import com.bcm.bcmanager.domain.menu.Menu;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import lombok.Getter;
@@ -10,22 +10,20 @@ import javax.persistence.*;
 import java.util.List;
 
 @Entity
-@Getter @Setter
+@Getter
+@Setter
 @JsonInclude(JsonInclude.Include.NON_EMPTY)
-public class Origin {
+public class Category {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @JsonIgnore
-    @Column(name = "origin_id")
+    @Column(name = "category_id")
     private Long id;
 
-    @OneToMany(mappedBy = "origin")
+    private String category;
+
     @JsonIgnore
-    private List<MenuOriginMap> map;
-
-    private String material;
-
-    private String country;
+    @OneToMany(mappedBy = "category")
+    private List<Menu> menuList;
 
 }

@@ -1,5 +1,6 @@
 package com.bcm.bcmanager.domain.menu;
 
+import com.bcm.bcmanager.domain.category.Category;
 import com.bcm.bcmanager.domain.image.MenuImage;
 import com.bcm.bcmanager.domain.map.MenuBookMap;
 import com.bcm.bcmanager.domain.map.MenuOriginMap;
@@ -25,6 +26,10 @@ public class Menu {
 
     @Schema(description = "메뉴 이름")
     private String name;
+
+    @ManyToOne
+    @JoinColumn(name = "category_id")
+    private Category category;
 
     @Schema(description = "가격")
     private Integer price;
