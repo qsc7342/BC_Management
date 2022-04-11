@@ -20,6 +20,7 @@ public class Category {
     @Column(name = "category_id")
     private Long id;
 
+    @Column(name = "category")
     private String category;
 
     @JsonIgnore
