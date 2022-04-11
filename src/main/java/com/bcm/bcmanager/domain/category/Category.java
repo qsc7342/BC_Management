@@ -23,7 +23,7 @@ public class Category {
     private String category;
 
     @JsonIgnore
-    @OneToMany(mappedBy = "category")
+    @OneToMany(mappedBy = "category", cascade = CascadeType.ALL)
     private List<Menu> menuList;
 
 }

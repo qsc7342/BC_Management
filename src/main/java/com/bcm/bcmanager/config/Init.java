@@ -26,7 +26,7 @@ public class Init {
 
     @PostConstruct
     public void init() throws IOException, ParseException {
-        initService.dbInit();
+//        initService.dbInit();
     }
 
     @Component
