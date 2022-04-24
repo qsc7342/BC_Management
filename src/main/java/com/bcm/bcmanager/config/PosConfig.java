@@ -6,18 +6,23 @@ import com.bcm.bcmanager.domain.menu.Menu;
 import com.bcm.bcmanager.domain.pos.PosSalesDto;
 import com.bcm.bcmanager.repository.category.CategoryReposittory;
 import com.bcm.bcmanager.repository.menu.MenuRepository;
+import com.bcm.bcmanager.repository.menuimage.MenuImageRepository;
 import com.google.gson.JsonArray;
 import lombok.RequiredArgsConstructor;
 import org.json.JSONArray;
 import org.json.JSONObject;
 import org.json.simple.parser.ParseException;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Profile;
 import org.springframework.http.*;
 import org.springframework.stereotype.Component;
+import org.springframework.stereotype.Controller;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.util.LinkedMultiValueMap;
 import org.springframework.util.MultiValueMap;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.client.RestTemplate;
 
 import javax.annotation.PostConstruct;
@@ -28,15 +33,22 @@ import javax.transaction.*;
 import java.io.IOException;
 import java.util.*;
 
-@Component
+
+@Controller
 @RequiredArgsConstructor
 public class PosConfig {
     private final PosService posService;
-
-    @PostConstruct
-    public void init() {
-        posService.insertCategoryToDB();
-        posService.insertMenuToDB();
+    @Value("${spring.servlet.multipart.location}")
+    private String filepath;
+    @GetMapping("/get/posdata")
+    public ResponseEntity<?> init() {
+        try {
+            posService.insertCategoryToDB();
+            posService.insertMenuToDB();
+        } catch (Exception e) {
+            return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+        }
+        return new ResponseEntity<>(HttpStatus.OK);
     }
 
     @Component
@@ -46,12 +58,15 @@ public class PosConfig {
         private final EntityManager em;
         private final MenuRepository menuRepository;
         private final CategoryReposittory categoryRepository;
+        private final MenuImageRepository menuImageRepository;
         private String filepath = System.getProperty("user.dir");
-
+        @Value("${spring.posurl}")
+        String posUrl;
         public void insertCategoryToDB() {
             categoryRepository.deleteAll();
+
             ResponseEntity<String> response = httpGetFromPos(
-                    "http://127.0.0.1:8081/pos/menu/type"
+                    posUrl + "/pos/menu/type"
             );
             String res = response.getBody();
             List<String> categories = new ArrayList<>();
@@ -81,8 +96,9 @@ public class PosConfig {
 
         public void insertMenuToDB() {
             menuRepository.deleteAll();
+            menuImageRepository.deleteAll();
             ResponseEntity<String> response = httpGetFromPos(
-                    "http://127.0.0.1:8081/pos/menu"
+                    posUrl + "/pos/menu"
             );
 
             JSONArray jsonArray = new JSONArray(response.getBody());
@@ -95,8 +111,8 @@ public class PosConfig {
 
                 Menu menu = new Menu();
                 MenuImage menuImage = new MenuImage();
-
-                menuImage.setFname(filepath + name + ".jpeg");
+//                menuImage.setFname("C:/tmp/images/" + name + ".jpeg");
+                menuImage.setFname(filepath +  "/images/" + name + ".jpeg");
                 menu.setName(name);
                 menu.setPrice(price);
                 menu.setDesc(name);
@@ -108,22 +124,6 @@ public class PosConfig {
                 menu.setImage(menuImage);
                 em.persist(menu);
             }
-        }
-
-        public void Test() {
-            Map<String, Object> params = new HashMap<>();
-            params.put("prev", "20220401");
-            params.put("next", "20220409");
-            System.out.println("params = " + params);
-            HttpHeaders headers = new HttpHeaders();
-            headers.setContentType(MediaType.APPLICATION_JSON);
-            HttpEntity<Map<String, Object>> request =
-                    new HttpEntity<>(params, headers);
-            System.out.println("request = " + request);
-            String url = "http://127.0.0.1:8081/pos/sales/day";
-            ResponseEntity<String> res = new RestTemplate().
-                    postForEntity(url, params, String.class);
-            String body = res.getBody();
         }
     }
 
