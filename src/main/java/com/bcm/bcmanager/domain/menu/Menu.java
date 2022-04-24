@@ -27,7 +27,7 @@ public class Menu {
     @Schema(description = "메뉴 이름")
     private String name;
 
-    @ManyToOne
+    @ManyToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "category_id")
     private Category category;
 
@@ -38,18 +38,18 @@ public class Menu {
     @Column(name = "description")
     private String desc;
 
-    @OneToOne
+    @OneToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "menuimage_id")
     private MenuImage image;
 
-    @OneToMany(mappedBy = "menu")
+    @OneToMany(mappedBy = "menu", cascade = CascadeType.ALL)
     @JsonIgnore
     private List<MenuBookMap> books;
 
-    @OneToMany(mappedBy = "menu")
+    @OneToMany(mappedBy = "menu", cascade = CascadeType.ALL)
     private List<Review> reviews;
 
-    @OneToMany(mappedBy = "menu")
+    @OneToMany(mappedBy = "menu", cascade = CascadeType.ALL)
     private List<MenuOriginMap> origins;
 
 }

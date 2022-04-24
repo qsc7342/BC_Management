@@ -20,10 +20,11 @@ public class Category {
     @Column(name = "category_id")
     private Long id;
 
+    @Column(name = "category")
     private String category;
 
     @JsonIgnore
-    @OneToMany(mappedBy = "category")
+    @OneToMany(mappedBy = "category", cascade = CascadeType.ALL)
     private List<Menu> menuList;
 
 }
