@@ -5,8 +5,11 @@ import com.fasterxml.jackson.annotation.JsonInclude;
 import io.swagger.v3.oas.annotations.media.Schema;
 import lombok.Getter;
 import lombok.Setter;
+import org.hibernate.annotations.CreationTimestamp;
+import org.hibernate.annotations.UpdateTimestamp;
 
 import javax.persistence.*;
+import java.time.LocalDateTime;
 import java.util.List;
 
 @Entity
@@ -41,4 +44,11 @@ public class Book {
     @Schema(name = "완료 여부 (Y/N)")
     private String completeyn = "N";
 
+    @Column(name = "created_at")
+    @CreationTimestamp
+    private LocalDateTime createdAt = LocalDateTime.now();
+
+    @Column(name = "updated_at")
+    @UpdateTimestamp
+    private LocalDateTime updatedAt = LocalDateTime.now();
 }
