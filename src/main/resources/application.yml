@@ -3,7 +3,7 @@ environments:
     url: localhost
     name: Developer Setup
   prod:
-    url: 119.69.70.88
+    url: localhost
     name: The Banchan
 
 spring:
@@ -40,9 +40,9 @@ spring:
 
   datasource:
     driver-class-name: org.postgresql.Driver
-    url: jdbc:postgresql://119.69.70.88:5432/themom
-    username: bcm
-    password: bcm2022!
+    url: jdbc:postgresql://localhost:5432/postgres
+    username: postgres
+    password: postgres
 
 ---
 
